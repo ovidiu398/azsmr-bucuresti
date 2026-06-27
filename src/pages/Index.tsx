@@ -4,21 +4,24 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
+import { Inspiration } from "@/components/Inspiration";
 import { Schedule } from "@/components/Schedule";
 import { Contact } from "@/components/Contact";
-import { MadeWithDyad } from "@/components/made-with-dyad";
 import { useLanguage } from "@/context/LanguageContext";
 
 const Footer = () => {
   const { t } = useLanguage();
   return (
-    <footer className="py-12 bg-gray-900 text-white">
+    <footer className="py-16 bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="mb-8">
-          <span className="text-2xl font-bold tracking-tight">AZSMR <span className="text-blue-400">București</span></span>
+        <div className="mb-10">
+          <span className="text-3xl font-bold tracking-tight">AZSMR <span className="text-blue-400">București</span></span>
+          <p className="mt-4 text-gray-400 max-w-md mx-auto">
+            Biserica Adventistă de Ziua a Șaptea - Mișcarea de Reformă
+          </p>
         </div>
-        <p className="text-gray-400 mb-4">{t("footer.copy")}</p>
-        <MadeWithDyad />
+        <div className="w-24 h-1 bg-blue-600 mx-auto mb-10 rounded-full" />
+        <p className="text-gray-500 text-sm">{t("footer.copy")}</p>
       </div>
     </footer>
   );
@@ -31,6 +34,7 @@ const IndexContent = () => {
       <main>
         <Hero />
         <About />
+        <Inspiration />
         <Schedule />
         <Contact />
       </main>
