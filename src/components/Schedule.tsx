@@ -1,50 +1,75 @@
 "use client";
 
 import { useLanguage } from "@/context/LanguageContext";
-import { Clock, Calendar } from "lucide-react";
+import { Clock, Calendar, Heart, Users } from "lucide-react";
 
 export const Schedule = () => {
   const { t } = useLanguage();
 
-  const schedule = [
-    { day: t("days.monday"), time: t("schedule.closed") },
-    { day: t("days.tuesday"), time: t("schedule.closed") },
-    { day: t("days.wednesday"), time: t("schedule.closed") },
-    { day: t("days.thursday"), time: t("schedule.closed") },
-    { day: t("days.friday"), time: t("schedule.closed") },
-    { day: t("days.saturday"), time: "09:00 – 12:15 | 17:00 – 20:30", active: true },
-    { day: t("days.sunday"), time: t("schedule.closed") },
-  ];
-
   return (
-    <section id="schedule" className="py-20 bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">{t("schedule.title")}</h2>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-medium">
-            <Calendar className="w-4 h-4" />
-            Săptămânal
-          </div>
+    <section id="schedule" className="py-24 bg-gray-50">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">{t("schedule.title")}</h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            {t("schedule.subtitle")}
+          </p>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
-          <div className="divide-y divide-gray-100">
-            {schedule.map((item) => (
-              <div 
-                key={item.day} 
-                className={`flex justify-between items-center p-6 transition-colors ${item.active ? 'bg-blue-50/50' : ''}`}
-              >
-                <span className={`font-semibold ${item.active ? 'text-blue-700' : 'text-gray-700'}`}>
-                  {item.day}
-                </span>
-                <div className="flex items-center gap-3">
-                  <Clock className={`w-4 h-4 ${item.active ? 'text-blue-600' : 'text-gray-400'}`} />
-                  <span className={item.active ? 'text-blue-900 font-medium' : 'text-gray-500'}>
-                    {item.time}
-                  </span>
+        <div className="grid md:grid-cols-2 gap-8 items-stretch">
+          <div className="bg-white rounded-3xl shadow-xl p-8 border border-gray-100 flex flex-col justify-between">
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-bold mb-6">
+                <Calendar className="w-4 h-4" />
+                {t("schedule.saturday")}
+              </div>
+              
+              <div className="space-y-8">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-2xl bg-blue-50 text-blue-600">
+                    <Clock className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-900">{t("schedule.morning")}</h4>
+                    <p className="text-2xl font-black text-blue-600">09:00 – 12:15</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-2xl bg-blue-50 text-blue-600">
+                    <Clock className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-900">{t("schedule.evening")}</h4>
+                    <p className="text-2xl font-black text-blue-600">17:00 – 20:30</p>
+                  </div>
                 </div>
               </div>
-            ))}
+            </div>
+
+            <div className="mt-12 pt-8 border-t border-gray-100">
+              <div className="flex items-center gap-3 text-gray-500 italic">
+                <Heart className="w-5 h-5 text-red-400" />
+                <p>{t("schedule.welcome")}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative rounded-3xl overflow-hidden shadow-xl group">
+            <img 
+              src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&q=80&w=1000" 
+              alt="Community" 
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/20 to-transparent flex items-end p-8">
+              <div className="text-white">
+                <div className="flex items-center gap-2 mb-2">
+                  <Users className="w-5 h-5 text-blue-300" />
+                  <span className="font-semibold uppercase tracking-wider text-sm text-blue-200">Comunitate</span>
+                </div>
+                <h3 className="text-2xl font-bold">O familie spirituală care te așteaptă.</h3>
+              </div>
+            </div>
           </div>
         </div>
       </div>

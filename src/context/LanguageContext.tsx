@@ -50,7 +50,7 @@ const translations = {
     "schedule.evening": "Evening Service",
     "schedule.welcome": "Everyone is welcome! Entry is free for anyone who wishes to draw closer to God.",
     "contact.title": "Where to Find Us",
-    "contact.address": "65 Stoian Militaru Street, 040717 Bucharest",
+    "contact.address": "65 Stoian Militaru Street, 040717 District 4, Bucharest",
     "footer.copy": "© 2024 AZSMR Bucharest. All rights reserved.",
   }
 };
