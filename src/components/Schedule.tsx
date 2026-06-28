@@ -55,12 +55,6 @@ export const Schedule = () => {
             </div>
           </div>
 
-          <div className="relative rounded-3xl overflow-hidden shadow-xl group">
-            <img 
-              src="" 
-              alt="Community" 
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
             <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/20 to-transparent flex items-end p-8">
               <div className="text-white">
                 <div className="flex items-center gap-2 mb-2">
