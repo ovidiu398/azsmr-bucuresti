@@ -36,7 +36,7 @@ export const About = () => {
               {t("about.title")}
             </h2>
             <p className="text-xl text-gray-600 leading-relaxed mb-10">
-              {t("about.content")}
+              {t("Psalmii 119:105")}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {features.map((f) => (
