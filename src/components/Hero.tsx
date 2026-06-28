@@ -37,7 +37,7 @@ export const Hero = () => {
         <div className="max-w-3xl mx-auto mb-12">
           <p className="text-xl md:text-2xl font-serif italic text-gray-700 leading-relaxed relative">
             <span className="text-4xl text-blue-200 absolute -top-4 -left-6">"</span>
-            {t("Și știm că toate lucrurile lucrează ")}
+            {t("Și știm că toate lucrurile lucrează spre binele celor ")}
             <span className="text-4xl text-blue-200 absolute -bottom-8 -right-4">"</span>
           </p>
         </div>
