@@ -57,7 +57,7 @@ export const Schedule = () => {
 
           <div className="relative rounded-3xl overflow-hidden shadow-xl group">
             <img 
-              src="https://web.whatsapp.com/5d63a483-d256-4112-a73e-d64b7731df1e" 
+              src="/downd" 
               alt="Community" 
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
