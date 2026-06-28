@@ -57,7 +57,7 @@ export const Schedule = () => {
 
           <div className="relative rounded-3xl overflow-hidden shadow-xl group">
             <img 
-              src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&q=80&w=1000" 
+              src="" 
               alt="Community" 
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
