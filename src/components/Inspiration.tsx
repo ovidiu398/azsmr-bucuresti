@@ -29,7 +29,7 @@ export const Inspiration = () => {
           "{quote}"
         </blockquote>
         <cite className="text-xl text-blue-300 font-medium not-italic">
-          — {reference}
+           {reference}
         </cite>
       </div>
     </section>
