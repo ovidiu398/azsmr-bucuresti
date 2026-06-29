@@ -1,6 +1,59 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
+
+type Translations = {
+  [key: string]: {
+    [key: string]: string;
+  };
+};
+
+const translations: Translations = {
+  ro: {
+    "nav.home": "Acasă",
+    "nav.about": "Despre noi",
+    "nav.schedule": "Program",
+    "nav.contact": "Contact",
+    "hero.title": "Biserica Adventistă de Ziua a Șaptea",
+    "hero.subtitle": "Mișcarea de Reformă — București",
+    "hero.live": "Urmărește Live",
+    "about.title": "Cine suntem noi?",
+    "about.content": "Suntem o comunitate creștină dedicată promovării valorilor biblice, sănătății și ajutorării semenilor. Ne ghidăm după principiile Scripturii și dorim să împărtășim dragostea lui Dumnezeu cu toți cei din jur.",
+    "about.lessons_title": "Lecții Biblice",
+    "about.lessons_desc": "Studiază Biblia cu noi",
+    "about.lessons_btn": "Vezi Lecția",
+    "schedule.title": "Programul Serviciilor Divine",
+    "schedule.subtitle": "Te invităm să te alături comunității noastre în fiecare sâmbătă pentru momente de închinare și părtășie.",
+    "schedule.saturday": "Sâmbătă",
+    "schedule.morning": "Serviciul de Dimineață",
+    "schedule.evening": "Serviciul de Seară",
+    "schedule.welcome": "Toți sunt bineveniți!",
+    "contact.title": "Unde ne găsești?",
+    "contact.address": "Strada Stoian Militaru 65",
+  },
+  en: {
+    "nav.home": "Home",
+    "nav.about": "About Us",
+    "nav.schedule": "Schedule",
+    "nav.contact": "Contact",
+    "hero.title": "Seventh-day Adventist Church",
+    "hero.subtitle": "Reform Movement — Bucharest",
+    "hero.live": "Watch Live",
+    "about.title": "Who are we?",
+    "about.content": "We are a Christian community dedicated to promoting biblical values, health, and helping others. We are guided by the principles of Scripture and wish to share God's love with everyone around us.",
+    "about.lessons_title": "Bible Lessons",
+    "about.lessons_desc": "Study the Bible with us",
+    "about.lessons_btn": "View Lesson",
+    "schedule.title": "Divine Service Schedule",
+    "schedule.subtitle": "We invite you to join our community every Saturday for moments of worship and fellowship.",
+    "schedule.saturday": "Saturday",
+    "schedule.morning": "Morning Service",
+    "schedule.evening": "Evening Service",
+    "schedule.welcome": "Everyone is welcome!",
+    "contact.title": "Where to find us?",
+    "contact.address": "65 Stoian Militaru Street",
+  }
+};
 
 type LanguageContextType = {
   language: string;
@@ -10,77 +63,22 @@ type LanguageContextType = {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// Dicționar de traduceri de bază pentru demonstrație
-const translations: Record<string, Record<string, string>> = {
-  ro: {
-    welcome: "Bine ați venit pe site-ul nostru",
-    description: "Acesta este un exemplu de site tradus integral.",
-    select_lang: "Selectează limba",
-    search_lang: "Caută limba...",
-    no_lang: "Nu am găsit nicio limbă.",
-    hero_title: "Transformă-ți ideile în realitate",
-    hero_subtitle: "Cea mai avansată platformă pentru proiectele tale.",
-    get_started: "Începe acum",
-  },
-  en: {
-    welcome: "Welcome to our website",
-    description: "This is an example of a fully translated site.",
-    select_lang: "Select language",
-    search_lang: "Search language...",
-    no_lang: "No language found.",
-    hero_title: "Turn your ideas into reality",
-    hero_subtitle: "The most advanced platform for your projects.",
-    get_started: "Get started",
-  },
-  fr: {
-    welcome: "Bienvenue sur notre site",
-    description: "Ceci est un exemple de site entièrement traduit.",
-    select_lang: "Choisir la langue",
-    search_lang: "Rechercher une langue...",
-    no_lang: "Aucune langue trouvée.",
-    hero_title: "Transformez vos idées en réalité",
-    hero_subtitle: "La plateforme la plus avancée pour vos projets.",
-    get_started: "Commencer",
-  },
-  de: {
-    welcome: "Willkommen auf unserer Webseite",
-    description: "Dies ist ein Beispiel für eine vollständig übersetzte Website.",
-    select_lang: "Sprache auswählen",
-    search_lang: "Sprache suchen...",
-    no_lang: "Keine Sprache gefunden.",
-    hero_title: "Verwandeln Sie Ihre Ideen in die Realität",
-    hero_subtitle: "Die fortschrittlichste Plattform für Ihre Projekte.",
-    get_started: "Jetzt loslegen",
-  },
-  es: {
-    welcome: "Bienvenido a nuestro sitio web",
-    description: "Este es un ejemplo de un sitio totalmente traducido.",
-    select_lang: "Seleccionar idioma",
-    search_lang: "Buscar idioma...",
-    no_lang: "No se encontró ningún idioma.",
-    hero_title: "Convierte tus ideas en realidad",
-    hero_subtitle: "La plataforma más avanzada para tus proyectos.",
-    get_started: "Empezar",
-  },
-  it: {
-    welcome: "Benvenuti nel nostro sito web",
-    description: "Questo è un esempio di sito completamente tradotto.",
-    select_lang: "Seleziona lingua",
-    search_lang: "Cerca lingua...",
-    no_lang: "Nessuna lingua trovata.",
-    hero_title: "Trasforma le tue idee in realtà",
-    hero_subtitle: "La piattaforma più avanzata per i tuoi progetti.",
-    get_started: "Inizia ora",
-  }
-  // Poți adăuga restul limbilor aici urmând același format
-};
-
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState('ro');
+  const [language, setLanguageState] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('app-language') || 'ro';
+    }
+    return 'ro';
+  });
 
-  // Funcția de traducere
-  const t = (key: string) => {
-    return translations[language]?.[key] || translations['en']?.[key] || key;
+  const setLanguage = (lang: string) => {
+    setLanguageState(lang);
+    localStorage.setItem('app-language', lang);
+    document.documentElement.lang = lang;
+  };
+
+  const t = (key: string): string => {
+    return translations[language]?.[key] || translations['ro']?.[key] || key;
   };
 
   return (
