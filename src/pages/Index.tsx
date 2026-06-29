@@ -1,6 +1,5 @@
 "use client";
 
-import { LanguageProvider } from "@/context/LanguageContext";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
@@ -20,14 +19,13 @@ const Footer = () => {
             Biserica Adventistă de Ziua a Șaptea - Mișcarea de Reformă
           </p>
         </div>
-        <div className="" />
-        <p className="text-gray-500 text-sm">{t("© 2026 AZSMR București. Toate drepturile rezervate.")}</p>
+        <p className="text-gray-500 text-sm">© 2026 AZSMR București. Toate drepturile rezervate.</p>
       </div>
     </footer>
   );
 };
 
-const IndexContent = () => {
+const Index = () => {
   return (
     <div className="min-h-screen bg-white selection:bg-blue-100 selection:text-blue-900">
       <Navbar />
@@ -40,14 +38,6 @@ const IndexContent = () => {
       </main>
       <Footer />
     </div>
-  );
-};
-
-const Index = () => {
-  return (
-    <LanguageProvider>
-      <IndexContent />
-    </LanguageProvider>
   );
 };
 
