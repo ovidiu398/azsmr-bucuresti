@@ -38,7 +38,10 @@ const translations: AllTranslations = {
     "hero.live": "Urmărește LIVE",
     "about.title": "Cine suntem",
     "about.content":
-      "Canalul AZSMR București este canalul oficial...",
+      "Canalul AZSMR București este canalul oficial al Bisericii Adventiste de Ziua a Șaptea Mișcarea de Reformă din București. Suntem o comunitate dedicată promovării valorilor creștine și a unui stil de viață sănătos.",
+    "about.lessons_title": "Lecțiuni Biblice 2026",
+    "about.lessons_desc": "Studiază împreună cu noi: „Umbland cu Isus” (Iulie - Septembrie 2026)",
+    "about.lessons_btn": "Deschide Lecțiunea",
     "schedule.title": "Te așteptăm cu drag!",
     "schedule.subtitle":
       "Serviciile noastre divine au loc în fiecare sâmbătă.",
@@ -64,7 +67,10 @@ const translations: AllTranslations = {
     "hero.live": "Watch LIVE",
     "about.title": "Who We Are",
     "about.content":
-      "The AZSMR Bucharest channel is the official channel...",
+      "The AZSMR Bucharest channel is the official channel of the Seventh-day Adventist Reform Movement Church in Bucharest. We are a community dedicated to promoting Christian values and a healthy lifestyle.",
+    "about.lessons_title": "Bible Lessons 2026",
+    "about.lessons_desc": "Study with us: 'Walking with Jesus' (July - September 2026)",
+    "about.lessons_btn": "Open Lesson",
     "schedule.title": "We Welcome You!",
     "schedule.subtitle":
       "Our services take place every Saturday.",
