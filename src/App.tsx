@@ -1,16 +1,24 @@
+"use client";
+
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import Index from './pages/Index';
+import BibleLessons from './pages/BibleLessons';
+import NotFound from './pages/NotFound';
+import { Toaster } from "@/components/ui/sonner";
 
 function App() {
   return (
     <LanguageProvider>
-      <Router>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/lectii-biblice" element={<BibleLessons />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
-      </Router>
+        <Toaster position="top-center" />
+      </BrowserRouter>
     </LanguageProvider>
   );
 }
