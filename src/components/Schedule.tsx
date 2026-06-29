@@ -32,7 +32,7 @@ export const Schedule = () => {
                   </div>
                   <div>
                     <h4 className="text-lg font-bold text-gray-900">{t("schedule.morning")}</h4>
-                    <p className="text-2xl font-black text-blue-600">09:00 – 12:15</p>
+                    <p className="text-2xl font-black text-blue-600">09:30 – 12:00</p>
                   </div>
                 </div>
 
