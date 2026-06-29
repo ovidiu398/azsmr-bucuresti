@@ -99,11 +99,23 @@ const BibleLessons = () => {
 
             <div className="flex flex-wrap gap-4 pt-8 border-t border-gray-100">
                 <Button 
-                  onClick={handleDownloadLesson}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 rounded-2xl text-lg font-bold shadow-lg transition-all hover:scale-105 flex items-center gap-2"
-                >
-                  <Download className="w-5 h-5" />
-                  Descarcă Lecția (PDF)
+                  import { Download } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const handleDownloadLesson = () => {
+  const fileUrl =
+    "https://www.azsmr.ro/media/imagini/1-Lectia-3-2026.pdf";
+
+  const link = document.createElement("a");
+  link.href = fileUrl;
+
+  // numele fișierului descărcat
+  link.download = "Lectia-3-2026.pdf";
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
                 </Button>
               <Button 
                 variant="outline" 
