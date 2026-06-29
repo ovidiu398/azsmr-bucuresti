@@ -55,6 +55,12 @@ export const Schedule = () => {
             </div>
           </div>
 
+          <div className="relative rounded-3xl overflow-hidden min-h-[300px] shadow-xl">
+            <img 
+              src="https://images.unsplash.com/photo-1438029071396-1e831a7fa6d8?auto=format&fit=crop&q=80&w=1000" 
+              alt="Community" 
+              className="absolute inset-0 w-full h-full object-cover"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/20 to-transparent flex items-end p-8">
               <div className="text-white">
                 <div className="flex items-center gap-2 mb-2">
