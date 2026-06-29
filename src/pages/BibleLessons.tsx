@@ -2,14 +2,14 @@
 
 import React from 'react';
 import { useLanguage } from "@/context/LanguageContext";
-import { BookOpen, ChevronLeft, Calendar, Share2, Printer } from "lucide-react";
+import { BookOpen, ChevronLeft, Calendar, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 const BibleLessons = () => {
   const { t } = useLanguage();
 
-  // Exemplu de date pentru lecții (în mod normal ar veni dintr-un API sau context)
   const currentLesson = {
     title: "Umbland cu Isus",
     quarter: "Iulie - Septembrie 2024",
@@ -19,7 +19,30 @@ const BibleLessons = () => {
       "Predica de pe munte",
       "Minunile și compasiunea",
       "Drumul spre Golgota"
-    ]
+    ],
+    pdfUrl: "https://www.adventist.ro/wp-content/uploads/2024/06/Studiu-Biblic-Adulti-2024-Trim-3.pdf" // Exemplu de link
+  };
+
+  const handleOpenLesson = () => {
+    window.open(currentLesson.pdfUrl, '_blank');
+  };
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: currentLesson.title,
+          text: currentLesson.description,
+          url: window.location.href,
+        });
+      } catch (error) {
+        console.error('Error sharing:', error);
+      }
+    } else {
+      // Fallback: Copy to clipboard
+      navigator.clipboard.writeText(window.location.href);
+      toast.success("Link copiat în clipboard!");
+    }
   };
 
   return (
@@ -69,14 +92,17 @@ const BibleLessons = () => {
             </div>
 
             <div className="flex flex-wrap gap-4 pt-8 border-t border-gray-100">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 rounded-2xl text-lg font-bold shadow-lg transition-all hover:scale-105">
-                Descarcă PDF
+              <Button 
+                onClick={handleOpenLesson}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 rounded-2xl text-lg font-bold shadow-lg transition-all hover:scale-105"
+              >
+                Deschide Lecția (PDF)
               </Button>
-              <Button variant="outline" className="px-6 py-6 rounded-2xl border-2 border-gray-200 hover:bg-gray-50">
-                <Printer className="w-5 h-5 mr-2" />
-                Printează
-              </Button>
-              <Button variant="ghost" className="px-6 py-6 rounded-2xl hover:bg-gray-100">
+              <Button 
+                variant="outline" 
+                onClick={handleShare}
+                className="px-6 py-6 rounded-2xl border-2 border-gray-200 hover:bg-gray-50"
+              >
                 <Share2 className="w-5 h-5 mr-2" />
                 Distribuie
               </Button>
