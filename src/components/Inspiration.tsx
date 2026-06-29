@@ -3,13 +3,7 @@
 import { useLanguage } from "@/context/LanguageContext";
 
 export const Inspiration = () => {
-  const { language } = useLanguage();
-  
-  const quote = language === 'ro' 
-    ? "Cuvântul Tău este o candelă pentru picioarele mele și o lumină pe cărarea mea."
-    : "Your word is a lamp to my feet and a light to my path.";
-  
-  const reference = "Psalmul 119:105";
+  const { t } = useLanguage();
 
   return (
     <section className="relative py-32 overflow-hidden">
@@ -26,10 +20,10 @@ export const Inspiration = () => {
           <div className="w-3 h-3 rounded-full bg-blue-400 animate-pulse" />
         </div>
         <blockquote className="text-3xl md:text-5xl font-serif italic text-white mb-8 leading-tight">
-          "{quote}"
+          "{t("inspiration.quote")}"
         </blockquote>
         <cite className="text-xl text-blue-300 font-medium not-italic">
-           {reference}
+           {t("inspiration.reference")}
         </cite>
       </div>
     </section>

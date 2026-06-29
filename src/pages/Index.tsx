@@ -17,11 +17,11 @@ const Footer = () => {
         <div className="mb-10">
           <span className="text-3xl font-bold tracking-tight">AZSMR <span className="text-blue-400">București</span></span>
           <p className="mt-4 text-gray-400 max-w-md mx-auto">
-            Biserica Adventistă de Ziua a Șaptea - Mișcarea de Reformă
+            {t("footer.desc")}
           </p>
         </div>
         <div className="" />
-        <p className="text-gray-500 text-sm">{t("© 2026 AZSMR București. Toate drepturile rezervate.")}</p>
+        <p className="text-gray-500 text-sm">{t("footer.rights")}</p>
       </div>
     </footer>
   );

@@ -14,24 +14,31 @@ import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
 const BibleLessons = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const currentLesson = {
-    title: "Umblând cu Isus",
-    quarter: "Iulie - Septembrie 2026",
-    description: [
+    title: language === 'ro' ? "Umblând cu Isus" : "Walking with Jesus",
+    quarter: language === 'ro' ? "Iulie - Septembrie 2026" : "July - September 2026",
+    description: language === 'ro' ? [
       "Acest trimestru ne invită la o călătorie spirituală profundă intitulată „Umblând cu Isus”.",
       "Lecțiile sunt concepute pentru creștere spirituală și experiență practică.",
       "Scopul este transformarea inimii prin Duhul Sfânt.",
+    ] : [
+      "This quarter invites us to a deep spiritual journey titled 'Walking with Jesus'.",
+      "The lessons are designed for spiritual growth and practical experience.",
+      "The goal is the transformation of the heart through the Holy Spirit.",
     ],
-    topics: [
+    topics: language === 'ro' ? [
       "Relația personală cu Isus",
       "Pașii creșterii spirituale",
       "Transformarea prin Duhul Sfânt",
       "Dependența de Dumnezeu",
+    ] : [
+      "Personal relationship with Jesus",
+      "Steps of spiritual growth",
+      "Transformation through the Holy Spirit",
+      "Dependence on God",
     ],
-
-    // PDF din folderul public/pdf
     pdfUrl: "/pdf/1-Lectia-3-2026.pdf",
   };
 
@@ -45,7 +52,7 @@ const BibleLessons = () => {
     link.click();
     document.body.removeChild(link);
 
-    toast.success("PDF deschis!");
+    toast.success(t("bible.pdf_opened"));
   };
 
   const handleShare = async () => {
@@ -61,7 +68,7 @@ const BibleLessons = () => {
       }
     } else {
       await navigator.clipboard.writeText(window.location.href);
-      toast.success("Link copiat!");
+      toast.success(t("bible.share_success"));
     }
   };
 
@@ -74,7 +81,7 @@ const BibleLessons = () => {
           className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium mb-8"
         >
           <ChevronLeft className="w-5 h-5 mr-1" />
-          Înapoi la pagina principală
+          {t("bible.back")}
         </Link>
 
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
@@ -83,7 +90,7 @@ const BibleLessons = () => {
             <div className="flex items-center gap-3 mb-4">
               <BookOpen className="w-6 h-6" />
               <span className="text-blue-100 uppercase text-sm">
-                Studiu Biblic
+                {t("bible.study")}
               </span>
             </div>
 
@@ -100,7 +107,7 @@ const BibleLessons = () => {
           <div className="p-8 md:p-12">
 
             <h2 className="text-2xl font-bold mb-5">
-              Despre acest studiu
+              {t("bible.about")}
             </h2>
 
             <div className="space-y-4 text-gray-600 mb-8">
@@ -110,7 +117,7 @@ const BibleLessons = () => {
             </div>
 
             <h3 className="text-xl font-semibold mb-4">
-              Teme principale
+              {t("bible.topics")}
             </h3>
 
             <ul className="grid md:grid-cols-2 gap-4 mb-10">
@@ -132,7 +139,7 @@ const BibleLessons = () => {
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 rounded-2xl text-lg font-bold"
               >
                 <Download className="w-5 h-5 mr-2" />
-                Descarcă Lecția (PDF)
+                {t("bible.download")}
               </Button>
 
               <Button
@@ -141,7 +148,7 @@ const BibleLessons = () => {
                 className="px-8 py-6 rounded-2xl"
               >
                 <Share2 className="w-5 h-5 mr-2" />
-                Distribuie
+                {t("bible.share")}
               </Button>
 
             </div>

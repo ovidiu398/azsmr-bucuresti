@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/context/LanguageContext";
-import { MapPin, Facebook, Instagram, Youtube, Send } from "lucide-react";
+import { MapPin, Facebook, Instagram, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Contact = () => {
@@ -19,12 +19,12 @@ export const Contact = () => {
               </div>
               <div>
                 <p className="text-lg font-medium text-gray-900">{t("contact.address")}</p>
-                <p className="text-gray-500">Sector 4, București</p>
+                <p className="text-gray-500">{t("contact.city")}</p>
               </div>
             </div>
 
             <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Social Media</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">{t("contact.social")}</h3>
               <div className="flex gap-4">
                 <Button variant="outline" size="icon" className="rounded-full hover:bg-blue-600 hover:text-white transition-all" asChild>
                   <a href="https://www.facebook.com/p/AZSMR-BUCURESTI-100064815845790" target="_blank" rel="noopener noreferrer">
@@ -32,7 +32,7 @@ export const Contact = () => {
                   </a>
                 </Button>
                 <Button variant="outline" size="icon" className="rounded-full hover:bg-pink-600 hover:text-white transition-all" asChild>
-                  <a href="https://instagram.com/azsmr_bucuresti" target="_blank" rel="noopener noreferrer">
+                  <a href="https://instagram.com/azsm_bucuresti" target="_blank" rel="noopener noreferrer">
                     <Instagram className="w-5 h-5" />
                   </a>
                 </Button>
