@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Check, ChevronsUpDown, Globe, Search } from "lucide-react";
+import { Check, ChevronsUpDown, Globe } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -46,7 +46,7 @@ const languages = [
 
 export const LanguageSwitcher = () => {
   const [open, setOpen] = React.useState(false);
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
 
   const selectedLanguage = languages.find((lang) => lang.value === language);
 
@@ -58,22 +58,22 @@ export const LanguageSwitcher = () => {
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="w-[180px] justify-between bg-background/50 backdrop-blur-sm border-primary/20 hover:border-primary/50 transition-all"
+            className="w-[200px] justify-between bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-primary/20 hover:border-primary/50 transition-all shadow-sm rounded-xl"
           >
             <div className="flex items-center gap-2">
-              <Globe className="h-4 w-4 text-primary" />
+              <Globe className="h-4 w-4 text-primary animate-pulse" />
               <span className="font-medium">
-                {selectedLanguage ? selectedLanguage.label : "Selectează limba"}
+                {selectedLanguage ? selectedLanguage.label : t('select_lang')}
               </span>
             </div>
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[200px] p-0" align="start">
-          <Command className="rounded-lg border shadow-md">
-            <CommandInput placeholder="Caută limba..." className="h-9" />
-            <CommandList>
-              <CommandEmpty>Nu am găsit nicio limbă.</CommandEmpty>
+        <PopoverContent className="w-[220px] p-0 border-none shadow-2xl rounded-xl overflow-hidden" align="end">
+          <Command className="rounded-xl border-none">
+            <CommandInput placeholder={t('search_lang')} className="h-11 border-none focus:ring-0" />
+            <CommandList className="max-h-[300px]">
+              <CommandEmpty>{t('no_lang')}</CommandEmpty>
               <CommandGroup>
                 {languages.map((lang) => (
                   <CommandItem
@@ -83,15 +83,20 @@ export const LanguageSwitcher = () => {
                       setLanguage(lang.value);
                       setOpen(false);
                     }}
-                    className="cursor-pointer"
+                    className="cursor-pointer py-3 px-4 aria-selected:bg-primary/10 transition-colors"
                   >
                     <Check
                       className={cn(
-                        "mr-2 h-4 w-4 text-primary",
-                        language === lang.value ? "opacity-100" : "opacity-0"
+                        "mr-3 h-4 w-4 text-primary transition-all",
+                        language === lang.value ? "opacity-100 scale-110" : "opacity-0 scale-50"
                       )}
                     />
-                    {lang.label}
+                    <span className={cn(
+                      "transition-colors",
+                      language === lang.value ? "font-bold text-primary" : "font-normal"
+                    )}>
+                      {lang.label}
+                    </span>
                   </CommandItem>
                 ))}
               </CommandGroup>
