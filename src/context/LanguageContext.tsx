@@ -10,13 +10,22 @@ import React, {
 
 type Language = "ro" | "en";
 
+type Translations = {
+  [key: string]: string;
+};
+
+type AllTranslations = {
+  ro: Translations;
+  en: Translations;
+};
+
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (key: string) => string;
 }
 
-const translations = {
+const translations: AllTranslations = {
   ro: {
     "nav.home": "Acasă",
     "nav.about": "Despre noi",
@@ -29,45 +38,43 @@ const translations = {
     "hero.live": "Urmărește LIVE",
     "about.title": "Cine suntem",
     "about.content":
-      "Canalul AZSMR București este canalul oficial al Bisericii Adventiste de Ziua a Șaptea Mișcarea de Reformă, din București. Avem disponibilă o gamă largă de videoclipuri ce țin atât de creșterea spirituală, cât și de sănătatea trupului, înglobând poezii, cântări, experiențe, povestioare, prezentări medicale sau predici.",
+      "Canalul AZSMR București este canalul oficial...",
     "schedule.title": "Te așteptăm cu drag!",
     "schedule.subtitle":
-      "Serviciile noastre divine au loc în fiecare sâmbătă. Indiferent de unde vii sau care este povestea ta, ești binevenit în mijlocul nostru.",
+      "Serviciile noastre divine au loc în fiecare sâmbătă.",
     "schedule.saturday": "Sâmbătă - Ziua Domnului",
     "schedule.morning": "Serviciul de Dimineață",
     "schedule.evening": "Serviciul de Seară",
     "schedule.welcome":
-      "Toți sunt bineprimiți! Intrarea este liberă pentru oricine dorește să se apropie de Dumnezeu.",
+      "Toți sunt bineprimiți!",
     "contact.title": "Unde ne găsiți",
-    "contact.address": "Strada Stoian Militaru 65, 040717 București",
-    "footer.copy": "© 2026 AZSMR București. Toate drepturile rezervate.",
+    "contact.address": "Strada Stoian Militaru 65",
+    "footer.copy": "© 2026 AZSMR București",
   },
 
   en: {
     "nav.home": "Home",
-    "nav.about": "About Us",
+    "nav.about": "About",
     "nav.schedule": "Schedule",
     "nav.contact": "Contact",
     "hero.title": "Seventh-day Adventist Church",
     "hero.subtitle": "Reform Movement - Bucharest",
     "hero.verse":
-      "Everything that grows us, ennobles us, helps us in our aspiration towards better and more beautiful, closer to the perfect Model, deserves to be promoted!",
+      "Everything that grows us deserves to be promoted!",
     "hero.live": "Watch LIVE",
     "about.title": "Who We Are",
     "about.content":
-      "The AZSMR Bucharest channel is the official channel of the Seventh-day Adventist Church Reform Movement in Bucharest. We offer a wide range of videos related to both spiritual growth and physical health.",
+      "The AZSMR Bucharest channel is the official channel...",
     "schedule.title": "We Welcome You!",
     "schedule.subtitle":
-      "Our divine services take place every Saturday. No matter where you come from or what your story is, you are welcome among us.",
+      "Our services take place every Saturday.",
     "schedule.saturday": "Saturday - The Lord's Day",
     "schedule.morning": "Morning Service",
     "schedule.evening": "Evening Service",
-    "schedule.welcome":
-      "Everyone is welcome! Entry is free for anyone who wishes to draw closer to God.",
+    "schedule.welcome": "Everyone is welcome!",
     "contact.title": "Where to Find Us",
-    "contact.address":
-      "65 Stoian Militaru Street, 040717 District 4, Bucharest",
-    "footer.copy": "© 2026 AZSMR Bucharest. All rights reserved.",
+    "contact.address": "65 Stoian Militaru Street",
+    "footer.copy": "© 2026 AZSMR Bucharest",
   },
 };
 
@@ -78,22 +85,20 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState<Language>("ro");
 
-  // load saved language
   useEffect(() => {
     const saved = localStorage.getItem("language") as Language | null;
-
     if (saved === "ro" || saved === "en") {
       setLanguage(saved);
     }
   }, []);
 
-  // save language
   useEffect(() => {
     localStorage.setItem("language", language);
   }, [language]);
 
-  const t = (key: string): string => {
-    return translations[language][key as keyof typeof translations.ro] || key;
+  const t = (key: string) => {
+    const langData = translations[language];
+    return langData[key] ?? key;
   };
 
   return (
