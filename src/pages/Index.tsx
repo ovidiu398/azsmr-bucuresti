@@ -1,42 +1,36 @@
 "use client";
 
-import { Navbar } from "@/components/Navbar";
-import { Hero } from "@/components/Hero";
-import { About } from "@/components/About";
-import { Inspiration } from "@/components/Inspiration";
-import { Schedule } from "@/components/Schedule";
-import { Contact } from "@/components/Contact";
-import { useLanguage } from "@/context/LanguageContext";
-
-const Footer = () => {
-  const { t } = useLanguage();
-  return (
-    <footer className="py-16 bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="mb-10">
-          <span className="text-3xl font-bold tracking-tight">AZSMR <span className="text-blue-400">București</span></span>
-          <p className="mt-4 text-gray-400 max-w-md mx-auto">
-            Biserica Adventistă de Ziua a Șaptea - Mișcarea de Reformă
-          </p>
-        </div>
-        <p className="text-gray-500 text-sm">© 2026 AZSMR București. Toate drepturile rezervate.</p>
-      </div>
-    </footer>
-  );
-};
+import React from 'react';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Index = () => {
+  const { t } = useLanguage();
+
   return (
-    <div className="min-h-screen bg-white selection:bg-blue-100 selection:text-blue-900">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Inspiration />
-        <Schedule />
-        <Contact />
-      </main>
-      <Footer />
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex flex-col items-center justify-center p-4">
+      <div className="absolute top-8 right-8">
+        <LanguageSwitcher />
+      </div>
+      
+      <div className="max-w-2xl w-full text-center space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+        <div className="space-y-4">
+          <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl">
+            <span className="block text-primary">{t('welcome')}</span>
+          </h1>
+          <p className="text-xl text-gray-600 max-w-lg mx-auto">
+            {t('description')}
+          </p>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-4 pt-8">
+          <nav className="flex space-x-8 text-sm font-medium text-gray-500">
+            <a href="#" className="hover:text-primary transition-colors">{t('home')}</a>
+            <a href="#" className="hover:text-primary transition-colors">{t('about')}</a>
+            <a href="#" className="hover:text-primary transition-colors">{t('contact')}</a>
+          </nav>
+        </div>
+      </div>
     </div>
   );
 };
