@@ -17,33 +17,60 @@ export const Navbar = () => {
     { name: t("nav.contact"), href: "#contact" },
   ];
 
+  const scrollToHome = () => {
+    const homeSection = document.getElementById("home");
+    if (homeSection) {
+      homeSection.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // fallback dacă nu există id-ul
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
+
+          {/* LOGO */}
           <div className="flex-shrink-0 flex items-center">
-            <span className="text-xl font-bold text-primary tracking-tight">AZSMR <span className="text-blue-600">București</span></span>
+            <button
+              onClick={scrollToHome}
+              className="text-xl font-bold text-primary tracking-tight"
+            >
+              AZSMR <span className="text-blue-600">București</span>
+            </button>
           </div>
-          
+
+          {/* DESKTOP MENU */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <a key={item.name} href={item.href} className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
+              >
                 {item.name}
               </a>
             ))}
             <LanguageSwitcher />
           </div>
 
+          {/* MOBILE */}
           <div className="md:hidden flex items-center gap-4">
             <LanguageSwitcher />
-            <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)}>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsOpen(!isOpen)}
+            >
               <Menu className="h-6 w-6" />
             </Button>
           </div>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* MOBILE MENU */}
       {isOpen && (
         <div className="md:hidden bg-white border-b border-gray-100 animate-in slide-in-from-top duration-300">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
