@@ -20,7 +20,7 @@ const Footer = () => {
             Biserica Adventistă de Ziua a Șaptea - Mișcarea de Reformă
           </p>
         </div>
-        <div className="w-24 h-1 bg-blue-600 mx-auto mb-10 rounded-full" />
+        <div className="" />
         <p className="text-gray-500 text-sm">{t("footer.copy")}</p>
       </div>
     </footer>
