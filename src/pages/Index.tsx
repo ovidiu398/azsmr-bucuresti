@@ -21,7 +21,7 @@ const Footer = () => {
           </p>
         </div>
         <div className="" />
-        <p className="text-gray-500 text-sm">{t("footer.copy")}</p>
+        <p className="text-gray-500 text-sm">{t("© 2026 AZSMR București. Toate drepturile rezervate.")}</p>
       </div>
     </footer>
   );
