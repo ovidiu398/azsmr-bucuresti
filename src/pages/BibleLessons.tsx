@@ -98,13 +98,13 @@ const BibleLessons = () => {
             </div>
 
             <div className="flex flex-wrap gap-4 pt-8 border-t border-gray-100">
-              <Button 
-                onClick={handleDownloadLesson}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 rounded-2xl text-lg font-bold shadow-lg transition-all hover:scale-105 flex items-center gap-2"
-              >
-                <Download className="w-5 h-5" />
-                Descarcă Lecția (PDF)
-              </Button>
+                <Button 
+                  onClick={handleDownloadLesson}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 rounded-2xl text-lg font-bold shadow-lg transition-all hover:scale-105 flex items-center gap-2"
+                >
+                  <Download className="w-5 h-5" />
+                  Descarcă Lecția (PDF)
+                </Button>
               <Button 
                 variant="outline" 
                 onClick={handleShare}
