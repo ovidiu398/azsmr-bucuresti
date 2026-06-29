@@ -14,22 +14,20 @@ const BibleLessons = () => {
     title: "Umblând cu Isus",
     quarter: "Iulie - Septembrie 2026",
     description: [
-      "Seria de lecții pentru studiul din acest trimestru, „Umblând cu Isus”, se bazează pe cartea Calea către Hristos. Aceasta poate fi citită, capitol cu capitol, ca un comentariu asupra lecțiilor din Scriptură.",
-      "Subiectele abordate în aceste lecții tratează experiențele majore ale vieții creștine și sunt deosebit de potrivite pentru credinciosul nou în credință, care caută să crească în har. Toți credincioșii ar trebui să reia aceste teme din când în când — nu doar pentru propriul lor folos, ci și pentru a cunoaște cea mai bună cale de a‑i ajuta și pe alții să vină la Hristos.",
-      "Fiecare membru al Școlii de Sabat ar trebui să aibă mărturia Duhului împreună cu duhul său că este cu adevărat adoptat în familia lui Dumnezeu. Fiecare ar trebui să-și dea seama că propriul exemplu, propria dependență continuă de Tatăl ceresc, în orice vreme și pentru toate lucrurile, trebuie să fie reală și practică. Este nevoie de mai mult decât o dragoste omenească slabă. Toți avem nevoie de dragostea lui Dumnezeu — dragostea Sa dezinteresată — sădită în inima și sufletul nostru, pentru ca să putem iubi așa cum a iubit El.",
-      "Fie ca aceasta să fie experiența fiecărui membru al Școlii de Sabat."
+      "Acest trimestru ne invită la o călătorie spirituală profundă intitulată „Umblând cu Isus”. Studiul are la bază principiile fundamentale prezentate în lucrarea „Calea către Hristos”, oferind o perspectivă practică asupra modului în care putem dezvolta o relație personală și autentică cu Mântuitorul.",
+      "Lecțiile sunt concepute pentru a ghida atât pe cei aflați la începutul drumului credinței, cât și pe cei care doresc să-și reînnoiască experiența creștină. Vom explora pașii esențiali ai creșterii spirituale, învățând cum să reflectăm dragostea divină în viața de zi cu zi și cum să devenim martori eficienți pentru cei din jurul nostru.",
+      "Scopul central al acestui studiu este transformarea inimii prin puterea Duhului Sfânt. Suntem chemați să trăim o viață de dependență totală de Dumnezeu, înlocuind eforturile omenești cu dragostea Sa necondiționată. Această experiență practică a credinței ne va ajuta să înțelegem mai bine ce înseamnă să fim cu adevărat parte din familia cerească."
     ],
     topics: [
-      "Calea către Hristos",
-      "Pocăința și Mărturisirea",
-      "Consacrarea",
-      "Creșterea în Hristos"
+      "Relația personală cu Isus",
+      "Pașii creșterii spirituale",
+      "Transformarea prin Duhul Sfânt",
+      "Dependența de Dumnezeu și dragostea divină"
     ],
     pdfUrl: "https://www.azsmr.ro/media/imagini/1-Lectia-3-2026.pdf"
   };
 
   const handleDownloadLesson = () => {
-    // Deschidem link-ul într-un tab nou pentru descărcare/vizualizare
     window.open(currentLesson.pdfUrl, '_blank');
     toast.success("Descărcarea a început!");
   };
