@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useLanguage } from "@/context/LanguageContext";
-import { BookOpen, ChevronLeft, Calendar, Share2 } from "lucide-react";
+import { BookOpen, ChevronLeft, Calendar, Share2, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
@@ -11,20 +11,27 @@ const BibleLessons = () => {
   const { t } = useLanguage();
 
   const currentLesson = {
-    title: "Umbland cu Isus",
-    quarter: "Iulie - Septembrie 2024",
-    description: "Un studiu aprofundat despre viața și învățăturile lui Isus Hristos.",
-    topics: [
-      "Chemarea ucenicilor",
-      "Predica de pe munte",
-      "Minunile și compasiunea",
-      "Drumul spre Golgota"
+    title: "Umblând cu Isus",
+    quarter: "Iulie - Septembrie 2026",
+    description: [
+      "Seria de lecții pentru studiul din acest trimestru, „Umblând cu Isus”, se bazează pe cartea Calea către Hristos. Aceasta poate fi citită, capitol cu capitol, ca un comentariu asupra lecțiilor din Scriptură.",
+      "Subiectele abordate în aceste lecții tratează experiențele majore ale vieții creștine și sunt deosebit de potrivite pentru credinciosul nou în credință, care caută să crească în har. Toți credincioșii ar trebui să reia aceste teme din când în când — nu doar pentru propriul lor folos, ci și pentru a cunoaște cea mai bună cale de a‑i ajuta și pe alții să vină la Hristos.",
+      "Fiecare membru al Școlii de Sabat ar trebui să aibă mărturia Duhului împreună cu duhul său că este cu adevărat adoptat în familia lui Dumnezeu. Fiecare ar trebui să-și dea seama că propriul exemplu, propria dependență continuă de Tatăl ceresc, în orice vreme și pentru toate lucrurile, trebuie să fie reală și practică. Este nevoie de mai mult decât o dragoste omenească slabă. Toți avem nevoie de dragostea lui Dumnezeu — dragostea Sa dezinteresată — sădită în inima și sufletul nostru, pentru ca să putem iubi așa cum a iubit El.",
+      "Fie ca aceasta să fie experiența fiecărui membru al Școlii de Sabat."
     ],
-    pdfUrl: "https://www.adventist.ro/wp-content/uploads/2024/06/Studiu-Biblic-Adulti-2024-Trim-3.pdf" // Exemplu de link
+    topics: [
+      "Calea către Hristos",
+      "Pocăința și Mărturisirea",
+      "Consacrarea",
+      "Creșterea în Hristos"
+    ],
+    pdfUrl: "https://www.azsmr.ro/media/imagini/1-Lectia-3-2026.pdf"
   };
 
-  const handleOpenLesson = () => {
+  const handleDownloadLesson = () => {
+    // Deschidem link-ul într-un tab nou pentru descărcare/vizualizare
     window.open(currentLesson.pdfUrl, '_blank');
+    toast.success("Descărcarea a început!");
   };
 
   const handleShare = async () => {
@@ -32,14 +39,13 @@ const BibleLessons = () => {
       try {
         await navigator.share({
           title: currentLesson.title,
-          text: currentLesson.description,
+          text: currentLesson.description[0],
           url: window.location.href,
         });
       } catch (error) {
         console.error('Error sharing:', error);
       }
     } else {
-      // Fallback: Copy to clipboard
       navigator.clipboard.writeText(window.location.href);
       toast.success("Link copiat în clipboard!");
     }
@@ -75,10 +81,12 @@ const BibleLessons = () => {
 
           <div className="p-8 md:p-12">
             <div className="prose prose-blue max-w-none">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Despre acest studiu</h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                {currentLesson.description}
-              </p>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Despre acest studiu</h2>
+              <div className="text-gray-600 text-lg leading-relaxed mb-8 space-y-4">
+                {currentLesson.description.map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
+              </div>
 
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Teme principale:</h3>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
@@ -93,10 +101,11 @@ const BibleLessons = () => {
 
             <div className="flex flex-wrap gap-4 pt-8 border-t border-gray-100">
               <Button 
-                onClick={handleOpenLesson}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 rounded-2xl text-lg font-bold shadow-lg transition-all hover:scale-105"
+                onClick={handleDownloadLesson}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 rounded-2xl text-lg font-bold shadow-lg transition-all hover:scale-105 flex items-center gap-2"
               >
-                Deschide Lecția (PDF)
+                <Download className="w-5 h-5" />
+                Descarcă Lecția (PDF)
               </Button>
               <Button 
                 variant="outline" 
