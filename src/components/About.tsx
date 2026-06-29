@@ -1,8 +1,9 @@
 "use client";
 
 import { useLanguage } from "@/context/LanguageContext";
-import { Heart, ShieldCheck, Activity, BookOpen, ExternalLink } from "lucide-react";
+import { Heart, ShieldCheck, Activity, BookOpen, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 export const About = () => {
   const { t } = useLanguage();
@@ -20,12 +21,15 @@ export const About = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <div className="order-2 lg:order-1">
             <div className="relative">
-              <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
-                <img 
-                  src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&q=80&w=1200" 
-                  alt="AZSMR București Community" 
-                  className="w-full h-full object-cover"
-                />
+              {/* Placeholder stilizat în loc de imagine externă */}
+              <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-8 border-white bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+                <div className="text-center p-8">
+                  <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-md">
+                    <Heart className="w-12 h-12 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">AZSMR București</h3>
+                  <p className="text-blue-100">O comunitate bazată pe credință și iubire.</p>
+                </div>
               </div>
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-600/10 rounded-full blur-3xl -z-10" />
               <div className="absolute -top-6 -right-6 w-32 h-32 bg-blue-400/10 rounded-full blur-3xl -z-10" />
@@ -52,7 +56,7 @@ export const About = () => {
           </div>
         </div>
 
-        {/* New Bible Lessons Section */}
+        {/* Bible Lessons Section - Acum internă */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-600 to-blue-800 p-8 md:p-12 text-white shadow-xl">
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="text-center md:text-left">
@@ -64,7 +68,7 @@ export const About = () => {
                 {t("about.lessons_desc")}
               </h3>
               <p className="text-blue-100 text-lg">
-                Descoperă profunzimea Scripturii prin studiul săptămânal.
+                Descoperă profunzimea Scripturii prin studiul săptămânal direct pe site-ul nostru.
               </p>
             </div>
             <Button 
@@ -73,14 +77,10 @@ export const About = () => {
               className="bg-white text-blue-700 hover:bg-blue-50 font-bold px-8 py-6 rounded-2xl shadow-lg transition-all hover:scale-105 gap-2"
               asChild
             >
-              <a 
-                href="https://www.azsmr.ro/lectii-biblice-pentru-sabat-umbland-cu-isus-iulie-septembrie-2026/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
+              <Link to="/lectii-biblice">
                 {t("about.lessons_btn")}
-                <ExternalLink className="w-5 h-5" />
-              </a>
+                <ArrowRight className="w-5 h-5" />
+              </Link>
             </Button>
           </div>
           
