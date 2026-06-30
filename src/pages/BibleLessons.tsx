@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import {
   BookOpen,
@@ -16,7 +16,7 @@ import { toast } from "sonner";
 const BibleLessons = () => {
   const { t, language } = useLanguage();
 
-  const currentLesson = {
+  const currentLesson = useMemo(() => ({
     title: language === 'ro' ? "Umblând cu Isus" : "Walking with Jesus",
     quarter: language === 'ro' ? "Iulie - Septembrie 2026" : "July - September 2026",
     description: language === 'ro' ? [
@@ -39,14 +39,15 @@ const BibleLessons = () => {
       "Transformation through the Holy Spirit",
       "Dependence on God",
     ],
-    pdfUrl: "/pdf/1-Lectia-3-2026.pdf",
-  };
+    pdfUrl: language === 'ro' ? "/pdf/1-Lectia-3-2026.pdf" : "/pdf/1-Lesson-3-2026.pdf",
+    fileName: language === 'ro' ? "1-Lectia-3-2026.pdf" : "1-Lesson-3-2026.pdf"
+  }), [language]);
 
   const handleDownloadLesson = () => {
     const link = document.createElement("a");
     link.href = currentLesson.pdfUrl;
     link.target = "_blank";
-    link.download = "1-Lectia-3-2026.pdf";
+    link.download = currentLesson.fileName;
 
     document.body.appendChild(link);
     link.click();
@@ -78,7 +79,7 @@ const BibleLessons = () => {
 
         <Link
           to="/"
-          className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium mb-8"
+          className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium mb-8 transition-colors"
         >
           <ChevronLeft className="w-5 h-5 mr-1" />
           {t("bible.back")}
@@ -89,7 +90,7 @@ const BibleLessons = () => {
           <div className="bg-gradient-to-r from-blue-600 to-blue-800 p-8 text-white">
             <div className="flex items-center gap-3 mb-4">
               <BookOpen className="w-6 h-6" />
-              <span className="text-blue-100 uppercase text-sm">
+              <span className="text-blue-100 uppercase text-sm tracking-wider font-semibold">
                 {t("bible.study")}
               </span>
             </div>
@@ -106,17 +107,17 @@ const BibleLessons = () => {
 
           <div className="p-8 md:p-12">
 
-            <h2 className="text-2xl font-bold mb-5">
+            <h2 className="text-2xl font-bold mb-5 text-gray-900">
               {t("bible.about")}
             </h2>
 
-            <div className="space-y-4 text-gray-600 mb-8">
+            <div className="space-y-4 text-gray-600 mb-8 leading-relaxed">
               {currentLesson.description.map((item, index) => (
                 <p key={index}>{item}</p>
               ))}
             </div>
 
-            <h3 className="text-xl font-semibold mb-4">
+            <h3 className="text-xl font-semibold mb-4 text-gray-900">
               {t("bible.topics")}
             </h3>
 
@@ -124,10 +125,10 @@ const BibleLessons = () => {
               {currentLesson.topics.map((topic, index) => (
                 <li
                   key={index}
-                  className="bg-blue-50 rounded-xl p-4 flex items-center gap-3 text-blue-800"
+                  className="bg-blue-50/50 rounded-xl p-4 flex items-center gap-3 text-blue-800 border border-blue-100"
                 >
-                  <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                  {topic}
+                  <div className="w-2 h-2 rounded-full bg-blue-500 shadow-sm"></div>
+                  <span className="font-medium">{topic}</span>
                 </li>
               ))}
             </ul>
@@ -136,7 +137,7 @@ const BibleLessons = () => {
 
               <Button
                 onClick={handleDownloadLesson}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 rounded-2xl text-lg font-bold"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 rounded-2xl text-lg font-bold shadow-lg shadow-blue-200 transition-all hover:scale-[1.02] active:scale-95"
               >
                 <Download className="w-5 h-5 mr-2" />
                 {t("bible.download")}
@@ -145,7 +146,7 @@ const BibleLessons = () => {
               <Button
                 variant="outline"
                 onClick={handleShare}
-                className="px-8 py-6 rounded-2xl"
+                className="px-8 py-6 rounded-2xl border-2 hover:bg-gray-50 transition-all"
               >
                 <Share2 className="w-5 h-5 mr-2" />
                 {t("bible.share")}
