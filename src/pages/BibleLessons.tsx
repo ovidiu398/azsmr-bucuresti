@@ -39,7 +39,9 @@ const BibleLessons = () => {
       "Transformation through the Holy Spirit",
       "Dependence on God",
     ],
-    pdfUrl: language === 'ro' ? "/pdf/1-Lectia-3-2026.pdf" : "/pdf/1-Lesson-3-2026.pdf",
+    pdfUrl: language === 'ro'
+  ? "/1-Lectia-3-2026.pdf"
+  : "/1-Lesson-3-2026.pdf",
     fileName: language === 'ro' ? "1-Lectia-3-2026.pdf" : "1-Lesson-3-2026.pdf"
   }), [language]);
 
