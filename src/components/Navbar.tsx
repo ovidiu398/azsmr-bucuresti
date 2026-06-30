@@ -37,13 +37,12 @@ export const Navbar = () => {
               onClick={scrollToHome}
               className="flex items-center gap-3 text-xl font-bold text-primary tracking-tight group"
             >
-              <div className="w-10 h-10 rounded-xl overflow-hidden shadow-sm border border-blue-100 group-hover:scale-105 transition-transform duration-300">
+              <div className="w-10 h-10 rounded-full overflow-hidden shadow-md border-2 border-blue-100 group-hover:scale-110 transition-all duration-300 ring-2 ring-blue-50 ring-offset-2">
                 <img 
                   src="https://yt3.googleusercontent.com/ytc/AIdro_m_X_X_X_X_X_X_X_X_X_X_X_X_X_X_X_X=s160-c-k-c0x00ffffff-no-rj" 
                   alt="AZSMR Logo" 
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    // Fallback în caz că URL-ul de mai sus nu e accesibil direct
                     (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1585829365234-781fcd50c819?auto=format&fit=crop&q=80&w=100";
                   }}
                 />
